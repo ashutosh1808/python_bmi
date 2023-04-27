@@ -1,6 +1,9 @@
 from tkinter import *
 import requests
 from tkinter.scrolledtext import *
+from tkinter.messagebox import *
+from sqlite3 import *
+
 main_window=Tk()
 main_window.title("Student Management System")
 main_window.geometry("900x600+100+30")
@@ -32,6 +35,24 @@ def f7():
 def f8():
 	main_window.deiconify()
 	view_window.withdraw()
+def f9():
+	rno=int(aw_ent_rno.get())
+	name=aw_ent_name.get()
+	marks=int(aw_ent_marks.get())
+	con=None
+	try:
+		con=connect("sms.db")
+		cursor=con.cursor()
+		sql="insert into student values('%d','%s','%d')"
+		cursor.execute(sql%(rno,name,marks))
+		con.commit()
+		showinfo("Success","Record created")
+	except Exception as e:
+		con.rollback()
+		showerror("Failure",str(e))
+	finally:
+		if con is not None:
+			con.close()
 
 btnAdd=Button(main_window,text="Add",font=f,bd=3,command=f1)
 btnAdd.place(x=350,y=10)
@@ -71,7 +92,7 @@ aw_ent_name=Entry(add_window,font=f)
 aw_ent_name.place(x=300,y=120)
 aw_ent_marks=Entry(add_window,font=f)
 aw_ent_marks.place(x=300,y=220)
-aw_btn_save=Button(add_window,text="Save",font=f,bd=3)
+aw_btn_save=Button(add_window,text="Save",font=f,bd=3,command=f9)
 aw_btn_save.place(x=360,y=400)
 aw_btn_back=Button(add_window,text="Back",font=f,bd=3,command=f2)
 aw_btn_back.place(x=360,y=500)
