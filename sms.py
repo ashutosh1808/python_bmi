@@ -1,6 +1,6 @@
 from tkinter import *
 import requests
-
+from tkinter.scrolledtext import *
 main_window=Tk()
 main_window.title("Student Management System")
 main_window.geometry("900x600+100+30")
@@ -26,10 +26,16 @@ def f5():
 def f6():
 	main_window.deiconify()
 	delete_window.withdraw()
+def f7():
+	view_window.deiconify()
+	main_window.withdraw()
+def f8():
+	main_window.deiconify()
+	view_window.withdraw()
 
 btnAdd=Button(main_window,text="Add",font=f,bd=3,command=f1)
 btnAdd.place(x=350,y=10)
-btnView=Button(main_window,text="View",font=f,bd=3)
+btnView=Button(main_window,text="View",font=f,bd=3,command=f7)
 btnView.place(x=350,y=110)
 btnUpdate=Button(main_window,text="Update",font=f,bd=3,command=f3)
 btnUpdate.place(x=350,y=210)
@@ -70,6 +76,18 @@ aw_btn_save.place(x=360,y=400)
 aw_btn_back=Button(add_window,text="Back",font=f,bd=3,command=f2)
 aw_btn_back.place(x=360,y=500)
 add_window.withdraw()
+
+view_window=Toplevel(main_window)
+view_window.title("View")
+view_window.geometry("900x600+100+30")
+view_window.iconbitmap("view.ico")
+view_window.configure(bg="violet")
+f=("Arial",20,"bold")
+vw_btn_back=Button(view_window,text="Back",font=f,bd=3,command=f8)
+st_data=ScrolledText(view_window,width=45,height=15,font=f)
+st_data.place(x=100,y=10)
+vw_btn_back.place(x=360,y=500)
+view_window.withdraw()
 
 update_window=Toplevel(main_window)
 update_window.title("Update")
