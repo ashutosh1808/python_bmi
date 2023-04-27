@@ -86,6 +86,7 @@ f=("Arial",20,"bold")
 vw_btn_back=Button(view_window,text="Back",font=f,bd=3,command=f8)
 st_data=ScrolledText(view_window,width=45,height=15,font=f)
 st_data.place(x=100,y=10)
+st_data.configure(state='disabled')
 vw_btn_back.place(x=360,y=500)
 view_window.withdraw()
 
