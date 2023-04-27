@@ -53,6 +53,10 @@ def f9():
 	finally:
 		if con is not None:
 			con.close()
+	aw_ent_rno.delete(0,END)
+	aw_ent_name.delete(0,END)
+	aw_ent_marks.delete(0,END)
+	aw_ent_rno.focus()
 
 btnAdd=Button(main_window,text="Add",font=f,bd=3,command=f1)
 btnAdd.place(x=350,y=10)
@@ -150,6 +154,5 @@ dw_btn_save.place(x=360,y=400)
 dw_btn_back=Button(delete_window,text="Back",font=f,bd=3,command=f6)
 dw_btn_back.place(x=360,y=500)
 delete_window.withdraw()
-
 
 main_window.mainloop()
