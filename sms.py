@@ -36,17 +36,28 @@ def f8():
 	main_window.deiconify()
 	view_window.withdraw()
 def f9():
-	rno=int(aw_ent_rno.get())
-	name=aw_ent_name.get()
-	marks=int(aw_ent_marks.get())
 	con=None
 	try:
 		con=connect("sms.db")
 		cursor=con.cursor()
-		sql="insert into student values('%d','%s','%d')"
-		cursor.execute(sql%(rno,name,marks))
-		con.commit()
-		showinfo("Success","Record created")
+		rno=int(aw_ent_rno.get());	name=aw_ent_name.get();	marks=int(aw_ent_marks.get());
+		if rno<=0:
+			showwarning("Wrong input","rno should be +ve")
+			con.rollback()
+		elif len(name)<2 or not(name.isalpha()):
+			showwarning("Wrong input","name should be letters only")
+			con.rollback()
+		elif marks<0 or marks>100:
+			showwarning("Wrong input","marks should be b/w 0 and 100")
+			con.rollback()	
+		else:
+			sql="insert into student values('%d','%s','%d')"
+			cursor.execute(sql%(rno,name,marks))
+			con.commit()
+			showinfo("Success","Record created")
+	except ValueError:
+		con.rollback()
+		showerror("Wrong input","invalid rno/marks")
 	except Exception as e:
 		con.rollback()
 		showerror("Failure",str(e))
@@ -57,6 +68,30 @@ def f9():
 	aw_ent_name.delete(0,END)
 	aw_ent_marks.delete(0,END)
 	aw_ent_rno.focus()
+def f10():
+	con=None
+	try:
+		con=connect("sms.db")
+		cursor=con.cursor()
+		sql="delete from student where rno='%d'"
+		rno=int(dw_ent_rno.get())
+		if rno<=0:
+			showwarning("Wrong input","rno should be +ve")
+			con.rollback()
+		else:
+			cursor.execute(sql%(rno))
+			if cursor.rowcount==1:
+				con.commit()
+				showinfo("Success","Record deleted")
+			else:
+				showinfo("No record","Record dne")
+	except Exception as e:
+		con.rollback()
+		showerror("Failure",str(e))
+	finally:
+		if con is not None:
+			con.close()
+	dw_ent_rno.delete(0,END)
 
 btnAdd=Button(main_window,text="Add",font=f,bd=3,command=f1)
 btnAdd.place(x=350,y=10)
@@ -149,7 +184,7 @@ dw_lbl_rno=Label(delete_window,text="enter rno",font=f,bg="lightgrey")
 dw_lbl_rno.place(x=100,y=20)
 dw_ent_rno=Entry(delete_window,font=f)
 dw_ent_rno.place(x=300,y=20)
-dw_btn_save=Button(delete_window,text="Delete",font=f,bd=3)
+dw_btn_save=Button(delete_window,text="Delete",font=f,bd=3,command=f10)
 dw_btn_save.place(x=360,y=400)
 dw_btn_back=Button(delete_window,text="Back",font=f,bd=3,command=f6)
 dw_btn_back.place(x=360,y=500)
