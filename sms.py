@@ -85,6 +85,9 @@ def f10():
 				showinfo("Success","Record deleted")
 			else:
 				showinfo("No record","Record dne")
+	except ValueError:
+		con.rollback();
+		showerror("Wrong input","Invalid rno")
 	except Exception as e:
 		con.rollback()
 		showerror("Failure",str(e))
@@ -116,6 +119,9 @@ def f11():
 				showinfo("Success","Record updated")
 			else:
 				showinfo("No record","Record dne")
+	except ValueError:
+		con.rollback()
+		showerror("Wrong input","Invalid rno/marks")
 	except Exception as e:
 		con.rollback()
 		showerror("Failure",str(e))
@@ -136,7 +142,6 @@ btnDelete=Button(main_window,text="Delete",font=f,bd=3,command=f5)
 btnDelete.place(x=350,y=310)
 btnPlot=Button(main_window,text="Plot",font=f,bd=3)
 btnPlot.place(x=350,y=410)
-
 
 res=requests.get("https://ipinfo.io/")
 data=res.json()
