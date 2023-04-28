@@ -135,7 +135,7 @@ uw_ent_marks=Entry(update_window,font=f)
 uw_ent_marks.place(x=300,y=220)
 uw_btn_save=Button(update_window,text="Save",font=f,bd=3)
 uw_btn_save.place(x=360,y=400)
-uw_btn_back=Button(update_window,text="Back",font=f,bd=3,command=f2)
+uw_btn_back=Button(update_window,text="Back",font=f,bd=3,command=f4)
 uw_btn_back.place(x=360,y=500)
 update_window.withdraw()
 
