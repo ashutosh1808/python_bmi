@@ -92,6 +92,39 @@ def f10():
 		if con is not None:
 			con.close()
 	dw_ent_rno.delete(0,END)
+def f11():
+	con=None
+	try:
+		con=connect("sms.db")
+		cursor=con.cursor()
+		sql="update student set name='%s', marks='%d' where rno='%d'"
+		rno=int(uw_ent_rno.get());	
+		name=uw_ent_name.get();		
+		marks=int(uw_ent_marks.get())
+		if rno<=0:
+			showwarning("Wrong input","rno should be +ve")
+			con.rollback()
+		elif len(name)<2 or not(name.isalpha()):
+			showwarning("Wrong input","Name should have letters only")
+			con.rollback()
+		elif marks<0 or marks>100:
+			showwarning("Wrong input","Marks should be between 0 and 100 only")
+		else:
+			cursor.execute(sql%(name,marks,rno))
+			if cursor.rowcount==1:
+				con.commit()
+				showinfo("Success","Record updated")
+			else:
+				showinfo("No record","Record dne")
+	except Exception as e:
+		con.rollback()
+		showerror("Failure",str(e))
+	finally:
+		if con is not None:
+			con.close()
+	uw_ent_rno.delete(0,END)
+	uw_ent_name.delete(0,END)
+	uw_ent_marks.delete(0,END)
 
 btnAdd=Button(main_window,text="Add",font=f,bd=3,command=f1)
 btnAdd.place(x=350,y=10)
@@ -168,7 +201,7 @@ uw_ent_name=Entry(update_window,font=f)
 uw_ent_name.place(x=300,y=120)
 uw_ent_marks=Entry(update_window,font=f)
 uw_ent_marks.place(x=300,y=220)
-uw_btn_save=Button(update_window,text="Save",font=f,bd=3)
+uw_btn_save=Button(update_window,text="Save",font=f,bd=3,command=f11)
 uw_btn_save.place(x=360,y=400)
 uw_btn_back=Button(update_window,text="Back",font=f,bd=3,command=f4)
 uw_btn_back.place(x=360,y=500)
