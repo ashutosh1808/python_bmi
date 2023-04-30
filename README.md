@@ -34,6 +34,5 @@ Start the server
 ```
 
 ## Screenshots
-
-![App Screenshot](https://drive.google.com/file/d/1NiO8yodDxGHDin-Sz3fxSKIHFYy-nkxg/view?usp=share_link)
+[url=https://postimg.cc/JyB7K38K][img]https://i.postimg.cc/JyB7K38K/Screenshot-2023-04-30-111557.png[/img][/url]
 
