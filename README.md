@@ -3,7 +3,9 @@ Student Management System (SMS) is a Desktop application, which helps a student/
 
 ## Tech stack used
 Front end: Python tkinter
+
 Back end: requests, matplotlib
+
 Storage: sqlite3
 
 ## Run Locally
