@@ -33,3 +33,7 @@ Start the server
   python sms.py
 ```
 
+## Screenshots
+
+![App Screenshot](https://drive.google.com/file/d/1NiO8yodDxGHDin-Sz3fxSKIHFYy-nkxg/view?usp=share_link)
+
