@@ -33,6 +33,3 @@ Start the server
   python sms.py
 ```
 
-## Screenshots[
-[url=https://postimg.cc/JyB7K38K][img]https://i.postimg.cc/JyB7K38K/Screenshot-2023-04-30-111557.png[/img][/url]
-](https://postimg.cc/gallery/jPfxmcD)
