@@ -1,19 +1,21 @@
-# python_sms
-Student Management System (SMS) is a Desktop application, which helps a student/institute to store the student data. The user can create, view, update and delete the student data. To add to it, the user can get a comparison by using the plot feature, which creates a plot of the marks scored by each student. 
 
-## Tech stack used
-Front end: Python tkinter
+# Student Management System
 
-Back end: requests, matplotlib
+A desktop application used to add, view, update or remove the student data, thereby analysing the scores of the students. It helps the institutes/schools to manage the student data 
 
-Storage: sqlite3
+## Tech Stack
+
+**Client:** Python tkinter, matplotlib
+
+**Server:** SQLite3
+
 
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://github.com/ashutosh1808/python_sms.git
+  git clone https://github.com/ashutosh1808/python_sms
 ```
 
 Go to the project directory
@@ -25,16 +27,23 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  pip3 install matplotlib
+  pip install pandas
 ```
+```bash
+  pip install numpy
+```
+```bash
+  pip install matplotlib
+```
+```bash
+  pip install requests
+```
+Initialize the database
 
 ```bash
-  pip3 install requests
+  sqlite3 sms.db
 ```
 
-```bash
-  pip3 install numpy
-```
 Start the server
 
 ```bash
