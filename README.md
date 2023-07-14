@@ -43,6 +43,9 @@ Initialize the database
 ```bash
   sqlite3 sms.db
 ```
+```bash
+  sqlite3> create table student(rno int primary key, name text, marks int);
+```
 
 Start the server
 
