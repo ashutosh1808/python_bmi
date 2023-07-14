@@ -5,9 +5,9 @@ A desktop application used to add, view, update or remove the student data, ther
 
 ## Tech Stack
 
-**Client:** Python tkinter, matplotlib
+**Front End:** Python tkinter, matplotlib
 
-**Server:** SQLite3
+**Back End:** SQLite3
 
 
 ## Run Locally
